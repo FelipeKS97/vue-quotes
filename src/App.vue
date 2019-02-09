@@ -1,7 +1,13 @@
 <template>
   <div class="container">
+      <Header :quoteCount="quotes.length" :maxQuotesNumber="maxQuotesNumber"></Header>
       <NewQuote @AddQuote="newQuote"></NewQuote>
-     <QuoteGrid :quotes="quotes"></QuoteGrid>
+      <QuoteGrid @quoteDelete="deleteQuote" :quotes="quotes"></QuoteGrid>
+      <div class="row">
+        <div class="col-sm-12 text-center">
+          <div class="alert alert-info">Info: Click on a quote and delete it!</div>
+        </div>
+      </div>
   </div>
 </template>
 
@@ -9,23 +15,28 @@
 import HelloWorld from './components/HelloWorld.vue'
 import QuoteGrid from './components/QuoteGrid.vue'
 import NewQuote from './components/NewQuote.vue'
+import Header from './components/Header.vue'
 
 export default {
   name: 'app',
   components: {
     HelloWorld,
     QuoteGrid,
-    NewQuote
+    NewQuote,
+    Header
   },
   methods: {
     newQuote(quote) {
       this.quotes.push(quote)
+    }, 
+    deleteQuote(index) {
+      this.quotes.splice(index, 1)
     }
   },
   data () {
     return {
       quotes: ['Just quote'],
-      maxQuotes: 10,
+      maxQuotesNumber: 10,
     }
   }
 }
