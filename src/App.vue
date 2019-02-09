@@ -1,17 +1,24 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container">
+     <QuoteGrid :quotes="quotes"></QuoteGrid>
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import QuoteGrid from './components/QuoteGrid.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    HelloWorld,
+    QuoteGrid
+  },
+  data () {
+    return {
+      quotes: ['Just quote'],
+      maxQuotes: 10,
+    }
   }
 }
 </script>
